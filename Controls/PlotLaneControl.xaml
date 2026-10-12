@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="SensorClockViewer.Controls.PlotLaneControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SensorClockViewer.Controls"
+    xmlns:ScottPlot="using:ScottPlot.WinUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="OpenButtonTemplate" TargetType="ToggleButton">
+                <Grid x:Name="RootGrid" CornerRadius="4" BorderThickness="1" BorderBrush="{ThemeResource ButtonBorderBrush}" Background="{ThemeResource ButtonBackground}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Target="Icon.Glyph" Value="&#xe972;"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Target="Icon.Glyph" Value="&#xe972;"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Target="Icon.Glyph" Value="&#xe9ae;"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="CheckedPointerOver">
+                                <VisualState.Setters>
+                                    <Setter Target="Icon.Glyph" Value="&#xe9ae;"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <FontIcon x:Name="Icon" Glyph="&#x20;" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </ControlTemplate>
+            <ResourceDictionary x:Key="Default">
+                <Color x:Key="DataBackgroundColor">#ffffffff</Color>
+                <Color x:Key="DataBackgroundDimColor">#ffc0c0c0</Color>
+                <Color x:Key="AxesColor">#ff000000</Color>
+                <Color x:Key="MajorLineColor">#ffd0d0d0</Color>
+                <Color x:Key="CrosshairMarkerColor">#ff404040</Color>
+            </ResourceDictionary>
+            <ResourceDictionary x:Key="Light">
+                <Color x:Key="DataBackgroundColor">#ffffffff</Color>
+                <Color x:Key="DataBackgroundDimColor">#ffc0c0c0</Color>
+                <Color x:Key="AxesColor">#ff000000</Color>
+                <Color x:Key="MajorLineColor">#ffd0d0d0</Color>
+                <Color x:Key="CrosshairMarkerColor">#ff404040</Color>
+            </ResourceDictionary>
+            <ResourceDictionary x:Key="Dark">
+                <Color x:Key="DataBackgroundColor">#ff1f1f1f</Color>
+                <Color x:Key="DataBackgroundDimColor">#ff404040</Color>
+                <Color x:Key="AxesColor">#ffd7d7d7</Color>
+                <Color x:Key="MajorLineColor">#ff404040</Color>
+                <Color x:Key="CrosshairMarkerColor">#ffc0c0c0</Color>
+            </ResourceDictionary>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="ContentPanel" ColumnDefinitions="Auto,120,*" RowDefinitions="20,*" ColumnSpacing="4">
+        <ToggleButton x:Name="OpenStateCheck" Grid.Column="0" Grid.Row="0" Width="20" Height="20" Template="{StaticResource OpenButtonTemplate}" IsChecked="{x:Bind IsOpen, Mode=TwoWay}" Visibility="{x:Bind HasTitle}"/>
+        <TextBlock x:Name="TitleText" Grid.Column="1" Grid.Row="0" Visibility="{x:Bind HasTitle}"/>
+        <TextBlock x:Name="DescriptionText" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Visibility="{x:Bind HasTitle}"/>
+        <ScottPlot:WinUIPlot x:Name="PlotCtrl" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"/>
+    </Grid>
+</UserControl>

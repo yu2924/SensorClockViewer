@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="SensorClockViewer.Panels.ArchDbTrimPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SensorClockViewer.Panels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel Orientation="Horizontal" Spacing="4" Padding="8" CornerRadius="8" Background="{x:Bind ToneBrush}">
+        <!-- selection range -->
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="TitleTextBlock" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <TextBox x:Name="SelFromTextBox" Header="From" VerticalAlignment="Bottom" Width="160" LostFocus="SelRangeTextBox_LostFocus" KeyDown="SelRangeTextBox_KeyDown"/>
+                <TextBox x:Name="SelToTextBox" Header="To" VerticalAlignment="Bottom" Width="160" LostFocus="SelRangeTextBox_LostFocus" KeyDown="SelRangeTextBox_KeyDown"/>
+            </StackPanel>
+        </StackPanel>
+        <!-- commands -->
+        <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="4" RowSpacing="4" VerticalAlignment="Bottom">
+            <ProgressRing x:Name="BusyProgress" Grid.Column="1" Grid.Row="0"
+                            IsIndeterminate="True"
+                            IsActive="{x:Bind TargetTaskBusy, Mode=OneWay}"/>
+            <Button x:Name="DeleteButton" Grid.Column="1" Grid.Row="1" Content="Delete" Width="64" VerticalAlignment="Bottom"
+                    Visibility="{x:Bind TargetTaskBusy, Converter={StaticResource ConvInvBoolToVisibility}, Mode=OneWay}"
+                    Click="Delete_Click"/>
+            <Button x:Name="CancelButton" Grid.Column="1" Grid.Row="1" Content="Cancel" Width="64" VerticalAlignment="Bottom"
+                    Visibility="{x:Bind TargetTaskBusy, Converter={StaticResource ConvBoolToVisibility}, Mode=OneWay}"
+                    Click="Cancel_Click">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Escape"/>
+                </Button.KeyboardAccelerators>
+            </Button>
+        </Grid>
+    </StackPanel>
+</UserControl>

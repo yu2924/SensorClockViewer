@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="SensorClockViewer.Controls.PlotArrayControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SensorClockViewer.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid x:Name="PlotContent" RowDefinitions="*,Auto">
+        <ScrollView x:Name="ScrollContainer" Grid.Row="0" ZoomMode="Disabled" HorizontalScrollMode="Disabled">
+            <StackPanel x:Name="ScrollContentPanel" Orientation="Vertical" Spacing="4">
+                <local:PlotLaneControl x:Name="SeTempLane"
+                                       Title="Temperature" Description="unit&#x9;℃&#xA;source&#x9;Sensor" Format="f1" Unit="℃"
+                                       ToneBrush="{ThemeResource SensorBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="SeHumLane"
+                                       Title="Humidity" Description="unit&#x9;%&#xA;source&#x9;Sensor" Format="g" Unit="%"
+                                       ToneBrush="{ThemeResource SensorBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="SePresLane"
+                                       Title="Air Pressure" Description="unit&#x9;hPa&#xA;source&#x9;Sensor" Format="g" Unit="hPa"
+                                       ToneBrush="{ThemeResource SensorBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="SeCo2Lane"
+                                       Title="CO2 Level" Description="unit&#x9;ppm&#xA;source&#x9;Sensor" Format="g" Unit="ppm"
+                                       ToneBrush="{ThemeResource SensorBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="SeIaqLane"
+                                       Title="Indoor Air Quality" Description="unit&#x9;%&#xA;source&#x9;Sensor" Format="g" Unit="%"
+                                       ToneBrush="{ThemeResource SensorBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="WeTempLane"
+                                       Title="Temperature" Description="unit&#x9;℃&#xA;source&#x9;Weather" Format="f1" Unit="℃"
+                                       ToneBrush="{ThemeResource WeatherBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="WeHumLane"
+                                       Title="Humidity" Description="unit&#x9;%&#xA;source&#x9;Weather" Format="g" Unit="%"
+                                       ToneBrush="{ThemeResource WeatherBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="WePresLane"
+                                       Title="Air Pressure" Description="unit&#x9;hPa&#xA;source&#x9;Weather" Format="g" Unit="hPa"
+                                       ToneBrush="{ThemeResource WeatherBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="WeCloudsLane"
+                                       Title="Clouds" Description="unit&#x9;%&#xA;source&#x9;Weather" Format="g" Unit="%"
+                                       ToneBrush="{ThemeResource WeatherBrush}"
+                                       IsInspectorEnabled="true"/>
+                <local:PlotLaneControl x:Name="WeWindsLane"
+                                       Title="Wind Vector" Description="source&#x9;Weather"
+                                       ToneBrush="{ThemeResource WeatherBrush}"
+                                       IsOpen="False"/>
+                <local:PlotLaneControl x:Name="WeIconsLane"
+                                       Title="Icon" Description="source&#x9;Weather"
+                                       ToneBrush="{ThemeResource WeatherBrush}"
+                                       IsOpen="False"/>
+            </StackPanel>
+        </ScrollView>
+        <local:PlotLaneControl x:Name="RulerLane" Grid.Row="1"
+                               HasTitle="False"
+                               OpenHeight="40"/>
+    </Grid>
+</UserControl>

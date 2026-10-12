@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SensorClockViewer (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SensorClockViewer (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
