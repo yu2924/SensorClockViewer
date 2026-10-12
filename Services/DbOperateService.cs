@@ -234,7 +234,8 @@ namespace SensorClockViewer.Services
 				{
 					Progress<double> prog = new(pos => TaskProgress = pos);
 					if(System.IO.File.Exists(tmppath)) { System.IO.File.Delete(tmppath); }
-					DatabaseService archdbs = new DatabaseService(tmppath);
+					using DatabaseService archdbs = new DatabaseService(tmppath);
+					archdbs.InitializeDatabase(true);
 					long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
 					long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
 					await DbService.CreateArchiveAsync(archdbs, tf, tt, taskCts.Token, prog);
@@ -254,7 +255,7 @@ namespace SensorClockViewer.Services
 						if(System.IO.File.Exists(tmppath)) { System.IO.File.Delete(tmppath); }
 					}
 				}
-				catch { r = TaskResult.Failed; Debug.Print("file operation failed"); }
+				catch(Exception e) { r = TaskResult.Failed; Debug.Print("file operation failed, {0}", e.Message); }
 			}
 			taskCts = null;
 			TaskStatus = TaskFlags.Idle;
