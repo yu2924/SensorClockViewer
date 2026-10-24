@@ -285,7 +285,7 @@ namespace SensorClockViewer.Controls
 					WeTempLane.PlotControl.Plot.Add.SignalXY(xs, records.Select(r => r.Temp).ToArray(), palette.GetColor(0));
 					WeHumLane.PlotControl.Plot.Add.SignalXY(xs, records.Select(r => r.Humidity).ToArray(), palette.GetColor(1));
 					WePresLane.PlotControl.Plot.Add.SignalXY(xs, records.Select(r => r.Pressure).ToArray(), palette.GetColor(2));
-					WeCloudsLane.PlotControl.Plot.Add.SignalXY(xs, records.Select(r => r.Cloud).ToArray(), palette.GetColor(3));
+					WeCloudsLane.PlotControl.Plot.Add.SignalXY(xs, records.Select(r => r.Clouds).ToArray(), palette.GetColor(3));
 					// wind vectors
 					WeWindRecord[] windrecords = records.Select(r => new WeWindRecord(0, r.WindSpeed, (float)r.WindDeg)).ToArray();
 					for(int c = xs.Length, i = 0; i < c; ++i) { windrecords[i].position = xs[i].ToOADate(); }

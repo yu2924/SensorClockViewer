@@ -6,7 +6,7 @@ namespace SensorClockViewer.Models
 		public float Temp { get; set; }
 		public int Pressure { get; set; }
 		public int Humidity { get; set; }
-		public int Cloud { get; set; }
+		public int Clouds { get; set; }
 		public float WindSpeed { get; set; }
 		public int WindDeg { get; set; }
 		public int WeatherId { get; set; }

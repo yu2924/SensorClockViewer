@@ -82,7 +82,7 @@ namespace SensorClockViewer.Services
 					Temp		= float.Parse(item.GetProperty("temp").GetString()!),
 					Pressure	= int.Parse(item.GetProperty("pressure").GetString()!),
 					Humidity	= int.Parse(item.GetProperty("humidity").GetString()!),
-					Cloud		= int.Parse(item.GetProperty("cloud").GetString()!),
+					Clouds		= int.Parse(item.GetProperty("clouds").GetString()!),
 					WindSpeed	= float.Parse(item.GetProperty("wind_speed").GetString()!),
 					WindDeg		= int.Parse(item.GetProperty("wind_deg").GetString()!),
 					WeatherId	= int.Parse(item.GetProperty("weather_id").GetString()!),

@@ -42,7 +42,7 @@ namespace SensorClockViewer.Services
 						Temp         real,
 						Pressure     integer,
 						Humidity     integer,
-						Cloud        integer,
+						Clouds       integer,
 						WindSpeed    real,
 						WindDeg      integer,
 						WeatherId    integer,
@@ -110,8 +110,8 @@ namespace SensorClockViewer.Services
 					var dbexecproc = () =>
 					{
 						iadded += conn.Execute(@"
-							insert or replace into WeatherRecords (Dt, Temp, Pressure, Humidity, Cloud, WindSpeed, WindDeg, WeatherId, WeatherIcon)
-							values (@Dt, @Temp, @Pressure, @Humidity, @Cloud, @WindSpeed, @WindDeg, @WeatherId, @WeatherIcon);", seg, tran);
+							insert or replace into WeatherRecords (Dt, Temp, Pressure, Humidity, Clouds, WindSpeed, WindDeg, WeatherId, WeatherIcon)
+							values (@Dt, @Temp, @Pressure, @Humidity, @Clouds, @WindSpeed, @WindDeg, @WeatherId, @WeatherIcon);", seg, tran);
 						cancellationtoken?.ThrowIfCancellationRequested();
 						progress?.Report((double)iadded / (double)numtotal);
 					};
