@@ -33,7 +33,6 @@ namespace SensorClockViewer.Pages
 		{
 			if((tf & DbOperateService.TaskFlags.Sensor) != 0) { PlotArrayCtrl.SetSensorData(dbOperateService?.GetSensorRecords()); }
 			if((tf & DbOperateService.TaskFlags.Weather) != 0) { PlotArrayCtrl.SetWeatherData(dbOperateService?.GetWeatherRecords()); }
-			PlotArrayCtrl.DefaultScaleAxes();
 		}
 		private bool OpenItem(string? path)
 		{

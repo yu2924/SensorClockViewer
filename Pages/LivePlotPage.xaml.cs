@@ -25,6 +25,7 @@ namespace SensorClockViewer.Pages
 		{
 			SelectOpPane(0);
 			RefreshPlot(DbOperateService.TaskFlags.Sensor | DbOperateService.TaskFlags.Weather);
+			PlotArrayCtrl.DefaultScaleAxes();
 		}
 		private void SelectOpPane(int i)
 		{
@@ -39,7 +40,6 @@ namespace SensorClockViewer.Pages
 		{
 			if((tf & DbOperateService.TaskFlags.Sensor) != 0) { PlotArrayCtrl.SetSensorData(dbOperateService.GetSensorRecords()); }
 			if((tf & DbOperateService.TaskFlags.Weather) != 0) { PlotArrayCtrl.SetWeatherData(dbOperateService.GetWeatherRecords()); }
-			PlotArrayCtrl.DefaultScaleAxes();
 		}
 		// --------------------------------------------------------------------------------
 		// ui event handlers
