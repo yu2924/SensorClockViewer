@@ -124,8 +124,8 @@ namespace SensorClockViewer.Services
 				try
 				{
 					Progress<double> prog = new(pos => TaskProgress = pos);
-					long? tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : null;
-					long? tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : null;
+					long? tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : null;
+					long? tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : null;
 					var records = await serverQueryService.FetchSensorRecordsAsync(settings, tf, tt, taskCts.Token);
 					await DbService.UpsertSensorRecordsAsync(records, taskCts.Token, prog);
 					r = TaskResult.Succeeded;
@@ -151,8 +151,8 @@ namespace SensorClockViewer.Services
 				try
 				{
 					Progress<double> prog = new(pos => TaskProgress = pos);
-					long? tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : null;
-					long? tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : null;
+					long? tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : null;
+					long? tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : null;
 					var records = await serverQueryService.FetchWeatherRecordsAsync(settings, tf, tt, taskCts.Token);
 					await DbService.UpsertWeatherRecordsAsync(records, taskCts.Token, prog);
 					r = TaskResult.Succeeded;
@@ -179,8 +179,8 @@ namespace SensorClockViewer.Services
 				try
 				{
 					Progress<double> prog = new(pos => TaskProgress = pos);
-					long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-					long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+					long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+					long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 					await DbService.DeleteSensorRecordsAsync(tf, tt, taskCts.Token, prog);
 					r = TaskResult.Succeeded;
 				}
@@ -204,8 +204,8 @@ namespace SensorClockViewer.Services
 				try
 				{
 					Progress<double> prog = new(pos => TaskProgress = pos);
-					long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-					long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+					long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+					long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 					await DbService.DeleteWeatherRecordsAsync(tf, tt, taskCts.Token, prog);
 					r = TaskResult.Succeeded;
 				}
@@ -236,8 +236,8 @@ namespace SensorClockViewer.Services
 					if(System.IO.File.Exists(tmppath)) { System.IO.File.Delete(tmppath); }
 					using DatabaseService archdbs = new DatabaseService(tmppath);
 					archdbs.InitializeDatabase(true);
-					long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-					long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+					long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+					long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 					await DbService.CreateArchiveAsync(archdbs, tf, tt, taskCts.Token, prog);
 					r = TaskResult.Succeeded;
 				}
@@ -266,24 +266,24 @@ namespace SensorClockViewer.Services
 		public IEnumerable<SensorRecord>? GetSensorRecords(DateTime? from = null, DateTime? to = null)
 		{
 			if(DbService == null) { return null; }
-			long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-			long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+			long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+			long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 			try { return DbService.GetSensorRecords(tf, tt); }
 			catch { return null; }
 		}
 		public IEnumerable<WeatherRecord>? GetWeatherRecords(DateTime? from = null, DateTime? to = null)
 		{
 			if(DbService == null) { return null; }
-			long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-			long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+			long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+			long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 			try { return DbService.GetWeatherRecords(tf, tt); }
 			catch { return null; }
 		}
 		public Tuple<DateTime, DateTime>? GetSensorRange(DateTime? from = null, DateTime? to = null)
 		{
 			if(DbService == null) { return null; }
-			long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-			long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+			long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+			long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 			try
 			{
 				var rng = DbService.GetSensorRange(tf, tt);
@@ -296,8 +296,8 @@ namespace SensorClockViewer.Services
 		public Tuple<DateTime, DateTime>? GetWeatherRange(DateTime? from = null, DateTime? to = null)
 		{
 			if(DbService == null) { return null; }
-			long tf = (from != null) ? new DateTimeOffset(from.Value).ToUnixTimeSeconds() : 0;
-			long tt = (to != null) ? new DateTimeOffset(to.Value).ToUnixTimeSeconds() : long.MaxValue;
+			long tf = (from != null) ? new DateTimeOffset(DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : 0;
+			long tt = (to != null) ? new DateTimeOffset(DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)).ToUnixTimeSeconds() : long.MaxValue;
 			try
 			{
 				var rng = DbService.GetWeatherRange(tf, tt);
