@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
@@ -107,12 +107,21 @@
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
     <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
     <ApplicationIcon>Resources\appicon.ico</ApplicationIcon>
-    <Version>0.9.1</Version>
+    <Version>1.0.0</Version>
     <Copyright>CC0 1.0 Universal</Copyright>
     <PackageIcon>Square44x44Logo.targetsize-256.png</PackageIcon>
     <Company>yu2924</Company>
     <Authors>yu2924</Authors>
     <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/yu2924/SensorClockViewer.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/yu2924/SensorClockViewer</PackageProjectUrl>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>False</GenerateTestArtifacts>
+    <AppxBundle>Never</AppxBundle>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />

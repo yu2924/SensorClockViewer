@@ -1,7 +1,8 @@
 {
   "profiles": {
     "SensorClockViewer (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "hotReloadEnabled": false
     },
     "SensorClockViewer (Unpackaged)": {
       "commandName": "Project"

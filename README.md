@@ -1,5 +1,7 @@
 # SensorClockViewer
 
+<img src="media/darkmode.png" width="400"> <img src="media/lightmode.png" width="400">
+
 This application visualizes the log data accumulated by the [SensorClock](https://github.com/yu2924/SensorClock).
 
 - Fetch the data accumulated by SensorClock and store it in the database.
